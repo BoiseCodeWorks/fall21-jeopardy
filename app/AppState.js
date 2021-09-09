@@ -8,7 +8,7 @@ class AppState extends EventEmitter {
   clues = []
   /** @type {import('./Models/Clue').Clue} */
   currentClue = null
-
+  startGame = false
   gameover = false
 
   player = {

@@ -14,21 +14,22 @@ async function _drawCurrentClue() {
     document.getElementById('current-clue').innerHTML = ProxyState.currentClue.Template
   } else {
     document.getElementById('current-clue').innerHTML = ''
-    // FIXME refactor move to gameover
-    // @ts-ignore
-    const playAgain = await Swal.fire({
-      title: 'Play Again?',
-      icon: 'question',
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'Heck no',
-      showCancelButton: true,
-    })
+  }
+}
 
-    if (playAgain.isConfirmed) {
-      _startGame()
-    } else {
-      document.getElementById('current-clue').innerHTML = 'fine go away'
-    }
+async function onGameOver() {
+  // @ts-ignore
+  const playAgain = await Swal.fire({
+    title: 'Play Again?',
+    icon: 'question',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Heck no',
+    showCancelButton: true,
+  })
+  if (playAgain.isConfirmed) {
+    _startGame()
+  } else {
+    document.getElementById('current-clue').innerHTML = 'fine go away'
   }
 }
 
@@ -51,7 +52,8 @@ export class ClueController {
   constructor() {
     // ProxyState.on('clues', _drawClues) // probably remove this later but i dont know
     ProxyState.on('currentClue', _drawCurrentClue)
-    ProxyState.on('gameover', _startGame)
+    ProxyState.on('startGame', _startGame)
+    ProxyState.on('gameover', onGameOver)
   }
 
   showAnswer(clueId) {

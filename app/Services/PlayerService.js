@@ -29,8 +29,7 @@ class PlayerService {
     } else {
       this.createPlayer(playerName)
     }
-    console.log('player', res)
-    ProxyState.gameover = false
+    ProxyState.startGame = true
   }
 
   async createPlayer(playerName) {
