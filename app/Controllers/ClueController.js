@@ -44,7 +44,6 @@ async function _startGame() {
   } else {
     _startGame()
   }
-
 }
 
 
