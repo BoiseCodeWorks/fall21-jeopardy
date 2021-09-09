@@ -7,11 +7,21 @@ const api = axios.create({
 })
 
 class JService {
-  async getRandomClue() {
-    let res = await api.get('random?count=10')
+  async getRandomClue(count = 10) {
+
+    let res = await api.get(`random?count=${count}`)
     console.log('random question response', res);
     ProxyState.clues = res.data.map(c => new Clue(c))
+    this.setNextQuestion()
   }
+
+  setNextQuestion() {
+    ProxyState.currentClue = ProxyState.clues.shift()
+    if (!ProxyState.currentClue) {
+      ProxyState.gameover = true
+    }
+  }
+
   constructor() {
     console.log('jservice working');
   }

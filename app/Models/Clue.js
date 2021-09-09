@@ -1,7 +1,7 @@
 export class Clue {
   constructor(clueData) {
     this.question = clueData.question
-    this.value = clueData.value
+    this.value = clueData.value || 100
     this.id = clueData.id
     this.answer = clueData.answer
     this.category = clueData.category.title
@@ -17,6 +17,10 @@ export class Clue {
       </div>
       <div class="answer visually-hidden" id="${this.id}-answer">
         <p>${this.answer}</p>
+        <div>
+          <button class="btn btn-dark" onclick="app.clueController.next(-${this.value})">Wrong</button>
+          <button class="btn btn-success" onclick="app.clueController.next(${this.value})">Right</button>
+        </div>
       </div>
     </div>
     `

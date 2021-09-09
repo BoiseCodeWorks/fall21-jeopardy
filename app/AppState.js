@@ -6,6 +6,17 @@ class AppState extends EventEmitter {
   values = []
   /** @type {import('./Models/Clue').Clue[]} */
   clues = []
+  /** @type {import('./Models/Clue').Clue} */
+  currentClue = null
+
+  gameover = false
+
+  player = {
+    name: '',
+    points: 0,
+    questions: 0
+  }
+
 }
 
 export const ProxyState = new Proxy(new AppState(), {
