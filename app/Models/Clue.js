@@ -10,10 +10,15 @@ export class Clue {
 
   get Template() {
     return /*html*/`
-      <div>
+    <div id="${this.id}">
+      <div class="question selectable" onclick="app.clueController.showAnswer('${this.id}')" id="${this.id}-question">
         <p>${this.category} - $${this.value}</p>
         <h3>${this.question}</h3>
       </div>
+      <div class="answer visually-hidden" id="${this.id}-answer">
+        <p>${this.answer}</p>
+      </div>
+    </div>
     `
   }
 

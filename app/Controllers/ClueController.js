@@ -14,4 +14,9 @@ export class ClueController {
     ProxyState.on('clues', _drawClues)
     jService.getRandomClue()
   }
+
+  showAnswer(clueId){
+    document.getElementById(clueId+'-answer').classList.toggle('visually-hidden')
+  }
+
 }

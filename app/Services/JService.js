@@ -8,7 +8,7 @@ const api = axios.create({
 
 class JService {
   async getRandomClue() {
-    let res = await api.get('random')
+    let res = await api.get('random?count=10')
     console.log('random question response', res);
     ProxyState.clues = res.data.map(c => new Clue(c))
   }
